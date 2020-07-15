@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-
+import pdb
 
 class BNN(nn.Module):
     def __init__(self, *layers):
@@ -38,7 +38,7 @@ class BNN(nn.Module):
             if type == 'Gaussian':
                 lklh = (-.5 * (y - out) ** 2).sum()
             else:   # softmax
-                lklh = torch.log(out.gather(1, y)).sum()
+                lklh = torch.log(torch.Tensor(y)).sum()
 
             total_kl += kl
             total_likelh += lklh
